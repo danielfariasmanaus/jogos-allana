@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ff72b6">
+  <meta name="description" content="Jogos da Allana — jogos educativos infantis de cores, letras, animais, objetos e memória.">
+  <title>Jogos da Allana 🌈</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="cloud c1"></span><span class="cloud c2"></span>
+    <span class="float f1">💗</span><span class="float f2">⭐</span>
+    <span class="float f3">✨</span><span class="float f4">🌈</span>
+  </div>
+
+  <header class="topbar">
+    <button class="brand" id="homeBtn" type="button" aria-label="Voltar ao início">
+      <span>🌈</span><strong>Jogos da Allana</strong>
+    </button>
+
+    <div class="controls" aria-label="Controles do site">
+      <div class="timer-pill" title="Tempo no site">⏱️ <span id="siteTimer">00:00</span></div>
+
+      <label class="volume" title="Volume da voz e dos sons">
+        🎵 Volume
+        <input id="volume" type="range" min="0" max="10" value="5" aria-label="Volume">
+        <span id="volumeValue">5</span>
+      </label>
+
+      <button id="musicBtn" class="control-btn" type="button" aria-pressed="true">🎵 Música ligada</button>
+      <button id="voiceBtn" class="control-btn" type="button" aria-pressed="true">🔊 Voz ligada</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="homeView" class="view active">
+      <div class="hero">
+        <div class="eyebrow">APRENDER BRINCANDO</div>
+        <h1>Olá, Allana! 👋</h1>
+        <p>Escolha um jogo e vamos brincar.</p>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card pink" data-open="colorsView">
+          <span class="card-icon">🎨</span>
+          <strong>Cores</strong>
+          <small>Encontre a cor certa</small>
+        </button>
+
+        <button class="game-card green" data-open="animalsView">
+          <span class="card-icon">🐶🧸</span>
+          <strong>Animais e objetos</strong>
+          <small>Encontre e aprenda</small>
+        </button>
+
+        <button class="game-card yellow" data-open="cardsView">
+          <span class="card-icon">🖼️⬇️</span>
+          <strong>Cartões</strong>
+          <small>Veja e imprima os cartões</small>
+        </button>
+
+        <button class="game-card blue" data-open="lettersView">
+          <span class="card-icon">🔤</span>
+          <strong>Que letra é essa?</strong>
+          <small>Letras de A a Z</small>
+        </button>
+
+        <button class="game-card purple" data-open="memoryView">
+          <span class="card-icon">🧠</span>
+          <strong>Memória</strong>
+          <small>Encontre os pares</small>
+        </button>
+      </div>
+
+      <div class="adult-note">👨‍👩‍👧 Feito para brincar junto com um adulto.</div>
+    </section>
+
+    <section id="colorsView" class="view game-view">
+      <div class="view-head">
+        <button class="back-btn" data-back type="button">← Início</button>
+        <div>
+          <h2>🎨 Cores</h2>
+          <p>Escute a pergunta e toque na cor certa.</p>
+        </div>
+      </div>
+      <div class="score-row">
+        <div>✅ Acertos <strong id="colorsHits">0</strong></div>
+        <div>❌ Erros <strong id="colorsMisses">0</strong></div>
+        <div>🧮 Respondidas <strong id="colorsAnswered">0</strong></div>
+        <div>⏱️ Pergunta <strong id="colorsQuestionTimer">00:00</strong></div>
+      </div>
+      <div class="prompt-card">
+        <span>Encontre:</span>
+        <strong id="colorTargetName">Azul</strong>
+        <button id="repeatColor" class="speak-btn" type="button">🔊 Repetir</button>
+      </div>
+      <div id="colorOptions" class="color-options" aria-label="Opções de cores"></div>
+      <div id="colorsFeedback" class="feedback" aria-live="polite"></div>
+      <button id="newColorsRound" class="round-btn" type="button">🔄 Nova rodada</button>
+    </section>
+
+    <section id="animalsView" class="view game-view">
+      <div class="view-head">
+        <button class="back-btn" data-back type="button">← Início</button>
+        <div>
+          <h2>🐶🧸 Animais e objetos</h2>
+          <p>Escute o nome e escolha a figura correta.</p>
+        </div>
+      </div>
+      <div class="score-row">
+        <div>✅ Acertos <strong id="animalsHits">0</strong></div>
+        <div>❌ Erros <strong id="animalsMisses">0</strong></div>
+        <div>🧮 Respondidas <strong id="animalsAnswered">0</strong></div>
+        <div>⏱️ Pergunta <strong id="animalsQuestionTimer">00:00</strong></div>
+      </div>
+      <div class="prompt-card">
+        <span>Encontre:</span>
+        <strong id="animalTargetName">Cachorro</strong>
+        <button id="repeatAnimal" class="speak-btn" type="button">🔊 Repetir</button>
+      </div>
+      <div id="animalOptions" class="picture-options" aria-label="Opções de animais e objetos"></div>
+      <div id="animalsFeedback" class="feedback" aria-live="polite"></div>
+      <button id="newAnimalsRound" class="round-btn" type="button">🔄 Nova rodada</button>
+    </section>
+
+    <section id="lettersView" class="view game-view">
+      <div class="view-head">
+        <button class="back-btn" data-back type="button">← Início</button>
+        <div>
+          <h2>🔤 Que letra é essa?</h2>
+          <p>Escute a pergunta e escolha uma das quatro letras.</p>
+        </div>
+        <button id="openLetterFilter" class="filter-btn" type="button">⚙️ Filtrar letras</button>
+      </div>
+
+      <div class="score-row">
+        <div>✅ Acertos <strong id="lettersHits">0</strong></div>
+        <div>❌ Erros <strong id="lettersMisses">0</strong></div>
+        <div>🧮 Respondidas <strong id="lettersAnswered">0</strong></div>
+        <div>⏱️ Pergunta <strong id="lettersQuestionTimer">00:00</strong></div>
+      </div>
+
+      <div id="letterFilterPanel" class="filter-panel hidden">
+        <h3>Escolha quais letras podem aparecer</h3>
+        <div class="filter-modes">
+          <label><input type="radio" name="letterMode" value="all" checked> Todas as letras (A–Z)</label>
+          <label><input type="radio" name="letterMode" value="vowels"> Somente vogais (A, E, I, O, U)</label>
+          <label><input type="radio" name="letterMode" value="custom"> Escolher letras</label>
+        </div>
+
+        <div id="letterPickerWrap" class="letter-picker-wrap hidden">
+          <div class="picker-actions">
+            <button id="selectAllLetters" type="button">Selecionar todas</button>
+            <button id="clearLetters" type="button">Limpar</button>
+          </div>
+          <div id="letterPicker" class="letter-picker"></div>
+        </div>
+
+        <div id="filterError" class="filter-error" aria-live="polite"></div>
+        <button id="applyLetterFilter" class="apply-btn" type="button">✓ Aplicar seleção</button>
+      </div>
+
+      <div class="voice-only-prompt">
+        <div class="listen-icon">👂</div>
+        <div>Escute com atenção</div>
+        <button id="repeatLetter" class="speak-btn" type="button">🔊 Repetir pergunta</button>
+      </div>
+
+      <div id="letterOptions" class="letter-options" aria-label="Opções de letras"></div>
+      <div id="lettersFeedback" class="feedback letter-feedback" aria-live="polite"></div>
+      <div id="letterReward" class="letter-reward hidden" aria-live="polite">
+        <span id="rewardEmoji">🐝</span>
+        <div><strong id="rewardLetter">A</strong> de <strong id="rewardName">Abelha</strong></div>
+      </div>
+      <button id="newLettersRound" class="round-btn" type="button">🔄 Nova rodada</button>
+    </section>
+
+    <section id="memoryView" class="view game-view">
+      <div class="view-head">
+        <button class="back-btn" data-back type="button">← Início</button>
+        <div>
+          <h2>🧠 Memória</h2>
+          <p>Encontre todos os pares.</p>
+        </div>
+      </div>
+      <div class="score-row">
+        <div>⭐ Pares <strong id="memoryPairs">0</strong>/8</div>
+        <div>👆 Jogadas <strong id="memoryMoves">0</strong></div>
+        <div>⏱️ Tempo <strong id="memoryTimer">00:00</strong></div>
+      </div>
+      <div id="memoryBoard" class="memory-board"></div>
+      <div id="memoryFeedback" class="feedback" aria-live="polite"></div>
+      <button id="newMemoryGame" class="round-btn" type="button">🔄 Novo jogo</button>
+    </section>
+
+    <section id="cardsView" class="view game-view">
+      <div class="view-head">
+        <button class="back-btn" data-back type="button">← Início</button>
+        <div>
+          <h2>🖼️ Cartões do alfabeto</h2>
+          <p>Cartões A–Z com uma figura correspondente.</p>
+        </div>
+        <button id="printCards" class="filter-btn" type="button">🖨️ Imprimir / Salvar PDF</button>
+      </div>
+      <div id="alphabetCards" class="alphabet-cards"></div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>🌟 Sonhe • Brinque • Aprenda 🌟</strong>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
