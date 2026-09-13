@@ -1,9 +1,0 @@
-{
-  "name": "Jogos da Allana",
-  "short_name": "Allana",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#8ed7ff",
-  "theme_color": "#ff72b6",
-  "lang": "pt-BR"
-}
